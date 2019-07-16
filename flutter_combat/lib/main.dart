@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'model/post.dart';
 import 'pages/PictureBook.dart';
+import 'pages/e_card.dart';
+import 'pages/qr_code.dart';
 
 //void main(){
 //  runApp(
@@ -40,9 +42,14 @@ class Home extends StatelessWidget {
           centerTitle: true,
           actions: <Widget>[
             IconButton(
-            icon: Icon(Icons.search),
+            icon: ImageIcon(AssetImage('images/img_qrcode.png')),
             tooltip: 'navigation',
-            onPressed: () => debugPrint('navigation button for search is click.'),
+            onPressed:(){
+              Navigator.push(context, new MaterialPageRoute(
+                // builder: (context) => new ListViewPictureBook()),
+                builder: (context) => new ECardApp()),
+                );
+            } ,
           )
           ],
           elevation: 10,
@@ -67,7 +74,7 @@ class Home extends StatelessWidget {
         ),
         drawer: Container(
           color: Colors.white12,
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.fromLTRB(0,0,8.0,0),
           child: Drawer(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -78,6 +85,13 @@ class Home extends StatelessWidget {
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage('http://static.ettoday.net/images/254/d254785.jpg'),
                   ),
+
+                  onDetailsPressed: (){
+                    Navigator.push(context, new MaterialPageRoute(
+                      // builder: (context) => new ListViewPictureBook()),
+                        builder: (context) => new initQR()),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text('Message',textAlign:TextAlign.right),
